@@ -107,14 +107,15 @@ module.exports = {
 		  FACEBOOK_ID,
 		  function() {
 		    client.getHistory(function(error, data){
-		      	var tinderUsers = data.matches;
-				for(var match in tinderUsers) {
+		      var tinderUsers = data.matches;
+				for(var i = 0; i < tinderUsers.length; i++) {
+               var match = tinderUsers[i]
 					var userID = match._id
-					if (person.id == from.id) {
-						if (sent-date > some amount) {
-							var variation = optimizely.track("message_response", userID);
-						}
-					}
+               var messages = match.messages;
+               var mes = messages[messages.length - 1]
+               if (match.person._id === mes.from) {
+                  var variation = optimizely.track("message_response", userID);
+               }
 				}
 				return res.status(200).send({message: "Conversions Logged"});
 		    });
