@@ -12,7 +12,7 @@ module.exports = {
 		  FACEBOOK_TOKEN,
 		  FACEBOOK_ID,
 		  function() {
-		    client.getMatches(function(error, data){
+		    client.getHistory(function(error, data){
 		      return res.status(200).send({resp: data});
 		    });
 		});

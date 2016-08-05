@@ -99,35 +99,38 @@ var SECRETS = require('../../secrets.js');
 var FACEBOOK_TOKEN = SECRETS.FACEBOOK.TOKEN
 var FACEBOOK_ID = SECRETS.FACEBOOK.ID
 
-module.exports = {
-	check: function(req, res) {
+var messageDict = {
+	"message1": "Hey",
+	"message2": "Down for coffee?",
+	"message3": "YOOOO!",
+	"message4": "I hear you're good at algebra.....Will you replace my eX without asking Y?",
+	"message5": "NUMBER?" 
+}
 
+module.exports = {
+	begin: function(req, res) {
+
+		//TODO: Get users from tinder, call it tinderUsers
 		client.authorize(
 		  FACEBOOK_TOKEN,
 		  FACEBOOK_ID,
 		  function() {
 		    client.getHistory(function(error, data){
 		      	var tinderUsers = data.matches;
-				for(var match in tinderUsers) {
-					var userID = match._id
-					if (person.id == from.id) {
-						if (sent-date > some amount) {
-							var variation = optimizely.track("message_response", userID);
-						}
-					}
-				}
-				return res.status(200).send({message: "Conversions Logged"});
+				// for(var match in tinderUsers) {
+				// if (match.messages == []) {
+					var userID = tinderUsers[0]._id//Get message userID
+					var variation = optimizely.activate(EXPERIMENT_ID, userID);
+					var message = messageDict[variation];
+
+					client.sendMessage(userID, message, function(error1, data1) {
+						console.log(data1)
+						return res.status(200).send({message1: message})
+					})
+				// }
+					//Call Optimizely SST if conversation count = 0
+				// }
 		    });
 		});
-
-		//TODO: Get message updates from tinder, call it tinderMessages
-		// var tinderMessages = 
-
-		// for(var message in tinderMessages) {
-		// 	var userID //Get message userID
-		// 	//Call Optimizely SST
-		// 	//Somehow mark TinderUpdates
-		// }
-		// return res.status(200).send({message: "Conversions Logged"});
 	}
 }

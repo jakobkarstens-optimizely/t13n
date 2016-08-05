@@ -1,7 +1,4 @@
-var Tinder = require('../API/tinder');
-var EXPERIMENT_ID = "firstmessage"
-var optimizely = require('optimizely-server-sdk');
-var datafile = {
+{
    "experiments":[
       {
          "status":"Running",
@@ -89,45 +86,4 @@ var datafile = {
       }
    ],
    "revision":"6"
-};
-var optimizely = optimizely.createInstance({ datafile: datafile });
-var request = require('superagent')
-var tinder = require('tinderjs');
-var client = new tinder.TinderClient();
-var SECRETS = require('../../secrets.js');
-
-var FACEBOOK_TOKEN = SECRETS.FACEBOOK.TOKEN
-var FACEBOOK_ID = SECRETS.FACEBOOK.ID
-
-module.exports = {
-	check: function(req, res) {
-
-		client.authorize(
-		  FACEBOOK_TOKEN,
-		  FACEBOOK_ID,
-		  function() {
-		    client.getHistory(function(error, data){
-		      	var tinderUsers = data.matches;
-				for(var match in tinderUsers) {
-					var userID = match._id
-					if (person.id == from.id) {
-						if (sent-date > some amount) {
-							var variation = optimizely.track("message_response", userID);
-						}
-					}
-				}
-				return res.status(200).send({message: "Conversions Logged"});
-		    });
-		});
-
-		//TODO: Get message updates from tinder, call it tinderMessages
-		// var tinderMessages = 
-
-		// for(var message in tinderMessages) {
-		// 	var userID //Get message userID
-		// 	//Call Optimizely SST
-		// 	//Somehow mark TinderUpdates
-		// }
-		// return res.status(200).send({message: "Conversions Logged"});
-	}
 }

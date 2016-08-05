@@ -26,6 +26,7 @@
     "mongoose": "^4.5.8",
     "morgan": "^1.7.0",
     "superagent": "^2.1.0",
-    "tinderjs": "^1.0.8"
+    "tinderjs": "^1.0.8",
+    "optimizely-client-sdk": "^0.1.1"
   }
 }
