@@ -25,6 +25,7 @@
     "express-validator": "^2.20.8",
     "mongoose": "^4.5.8",
     "morgan": "^1.7.0",
-    "superagent": "^2.1.0"
+    "superagent": "^2.1.0",
+    "tinderjs": "^1.0.8"
   }
 }
