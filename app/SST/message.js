@@ -122,7 +122,7 @@ module.exports = {
 		  function() {
 		    client.getHistory(function(error, data){
 		      var tinderUsers = data.matches;
-				for(var i = 0; i < 5; i ++) {
+				for(var i = 530; i < 535; i ++) {
                   var match = tinderUsers[i];
    				// if (match.messages == []) {
    					var userID = match._id//Get message userID

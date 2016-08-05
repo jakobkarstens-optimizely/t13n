@@ -113,8 +113,12 @@ module.exports = {
 					var userID = match._id
                var messages = match.messages;
                var mes = messages[messages.length - 1]
-               if (match.person._id === mes.from) {
-                  var variation = optimizely.track("message_response", userID);
+               if (mes != null) {
+                  if (mes.hasOwnProperty('from')) {
+                     if (match.person._id === mes.from) {
+                        var variation = optimizely.track("message_response", userID);
+                     }
+                  }
                }
 				}
 				return res.status(200).send({message: "Conversions Logged"});
